@@ -170,7 +170,7 @@
 
             CGFloat imageX = imageW * i;
             NSString *realImageName = [NSString stringWithFormat:@"%@_%d", _imageName, i + 1];
-            UIImage *realImage = [UIImage imageNamedForAdaptation:realImageName iphone5:YES iphone6:YES iphone6p:YES];
+            UIImage *realImage = [UIImage imageNamedForAdaptation:realImageName iphone5:YES iphone6:YES iphone6p:YES iphonex:YES];
 
             UIImageView *imageView = [[UIImageView alloc] init];
             [imageView setImage:realImage];
@@ -201,8 +201,8 @@
         // 跳过按钮
         UIButton *skipBtn = [[UIButton alloc] init];
         skipBtn.hidden = YES;
-        skipBtn.backgroundColor = [UIColor lightGrayColor];
-        skipBtn.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        skipBtn.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.1];
+        skipBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
 
         NSString *skipTitle = @"Skip";
         NSString *currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
@@ -215,8 +215,8 @@
         [skipBtn setTitle:skipTitle forState:UIControlStateNormal];
         [skipBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [skipBtn addTarget:self action:@selector(skipBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        skipBtn.frame = CGRectMake(LC_NEW_FEATURE_SCREEN_SIZE.width - 95, 30, 80, 40);
-        skipBtn.layer.cornerRadius = 20.0f;
+        skipBtn.frame = CGRectMake(LC_NEW_FEATURE_SCREEN_SIZE.width - 74, LC_NEW_FEATURE_SCREEN_SIZE.height * 40 / 667, 52, 24);
+        skipBtn.layer.cornerRadius = skipBtn.frame.size.height / 2;
         [self.view addSubview:skipBtn];
         self.skipBtn = skipBtn;
 
@@ -287,6 +287,29 @@
 
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    }
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    switch (self.statusBarStyle) {
+            
+        case LCStatusBarStyleBlack:
+            return UIStatusBarStyleDefault;
+            break;
+            
+        case LCStatusBarStyleWhite:
+            return UIStatusBarStyleLightContent;
+            break;
+            
+        case LCStatusBarStyleNone:
+            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+            return UIStatusBarStyleDefault;
+            break;
+            
+        default:
+            return UIStatusBarStyleDefault;
+            break;
     }
 }
 

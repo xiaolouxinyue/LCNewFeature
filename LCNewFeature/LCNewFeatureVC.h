@@ -62,7 +62,7 @@
 /**
  *  完成新特性界面展示后的block回调
  */
-typedef void (^LCNewFeatureFinishBlock)();
+typedef void (^LCNewFeatureFinishBlock)(void);
 
 //typedef void (^LCNewFeaturePageBlock)(NSInteger page);
 

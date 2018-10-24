@@ -22,13 +22,11 @@
 
     /** 进入主界面的按钮 */
     UIButton *_enterButton;
-
-    /** 完成新特性界面展示后的block回调 */
-    LCNewFeatureFinishBlock _finishBlock;
 }
 
 @property (nonatomic, weak) UIButton *skipBtn;
-
+/** 完成新特性界面展示后的block回调 */
+@property (nonatomic, copy) LCNewFeatureFinishBlock finishBlock;
 @end
 
 
@@ -320,7 +318,7 @@
     // 最后一张再向左划的话
     if (scrollView.contentOffset.x == LC_NEW_FEATURE_SCREEN_SIZE.width * (_imageCount - 1)) {
 
-        if (_finishBlock) {
+        if (self.finishBlock) {
 
             [UIView animateWithDuration:0.4f animations:^{
 
@@ -328,7 +326,7 @@
 
             } completion:^(BOOL finished) {
 
-                _finishBlock();
+                self.finishBlock();
             }];
         }
     }

@@ -26,6 +26,9 @@
                                 iphone5:(BOOL)iphone5
                                 iphone6:(BOOL)iphone6
                                iphone6p:(BOOL)iphone6p
-                                iphonex:(BOOL)iphonex;
+                                iphonex:(BOOL)iphonex
+                                iphonexr:(BOOL)iphonex
+                                iphonexsmax:(BOOL)iphonex;
+
 
 @end

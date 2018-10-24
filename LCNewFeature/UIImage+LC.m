@@ -10,9 +10,17 @@
 #import "UIImage+LC.h"
 
 #define IPHONE5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 #define IPHONE6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size)) : NO)
+
 #define IPHONE6P ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size)) : NO)
-#define IPHONEX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(750, 1624), [[UIScreen mainScreen] currentMode].size)) : NO)
+
+#define IPHONEX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ?CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IPHONEXR ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IPHONEXSMAX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size)) : NO)
+
 
 #ifdef DEBUG
 #define LCLog(...) NSLog(@"%s -> Line:%d -> %@", __func__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
@@ -26,7 +34,9 @@
                                 iphone5:(BOOL)iphone5
                                 iphone6:(BOOL)iphone6
                                iphone6p:(BOOL)iphone6p
-                               iphonex:(BOOL)iphonex {
+                               iphonex:(BOOL)iphonex
+                               iphonexr:(BOOL)iphonexr
+                            iphonexsmax:(BOOL)iphonexsmax{
     
     NSString *realImageName = imageName;
     
@@ -41,9 +51,15 @@
     } else if (IPHONE6P && iphone6p) {  // 当前设备是 iPhone 6 p / 6s p
         
         realImageName = [NSString stringWithFormat:@"%@_iphone6p", realImageName];
-    } else if (IPHONEX && iphonex) {  // 当前设备是 iPhone 6 p / 6s p
+    } else if (IPHONEX && iphonex) {  // 当前设备是 iPhone x / xs
         
         realImageName = [NSString stringWithFormat:@"%@_iphonex", realImageName];
+    } else if (IPHONEXR && iphonexr) {  // 当前设备是 iPhone xr
+        
+        realImageName = [NSString stringWithFormat:@"%@_iphonexr", realImageName];
+    } else if (IPHONEXSMAX && iphonexsmax) {  // 当前设备是 iPhone xsmax
+        
+        realImageName = [NSString stringWithFormat:@"%@_iphonexsmax", realImageName];
     }
     
 //    LCLog(@"\nImageName: %@", realImageName);
